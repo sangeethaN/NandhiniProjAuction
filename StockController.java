@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class StockController
@@ -61,6 +62,10 @@ public class StockController extends HttpServlet {
 		UserStockDao usd=new UserStockDao();
 		
 			usd.add(name,company);
+			HttpSession session = request.getSession();
+	        session.setAttribute("name", name);
+			RequestDispatcher rd=request.getRequestDispatcher("Success.jsp");  
+			rd.forward(request, response);
 		
 		
 		
